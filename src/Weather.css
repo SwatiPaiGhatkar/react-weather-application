@@ -1,0 +1,65 @@
+.Weather {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 600px;
+  margin: 30px auto;
+}
+.Weather form {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.Weather input[type="search"] {
+  width: 100%;
+  max-width: none;
+  padding: 5px;
+  border-radius: 6px;
+}
+.Weather h1 {
+  margin: 20px 0 0 0px;
+  color: #6422f1;
+  display: block;
+  font-family: Google Sans, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 56px;
+}
+.Weather ul {
+  margin: 0;
+  padding: 0;
+}
+.Weather li {
+  color: #28013a;
+  font-family: Google Sans, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: left;
+  list-style-type: none;
+}
+.weather-main {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* space between icon and temperature */
+  margin-right: 2px;
+}
+.temperature {
+  font-size: 40px;
+  font-weight: bold;
+  color: #6422f1;
+  line-height: 64px;
+}
+.temperature,
+.unit {
+  display: inline-block;
+  vertical-align: left;
+}
+
+.unit {
+  font-size: 16px;
+  color: #6422f1;
+  position: relative;
+  top: -5px; /* Adjusts the unit position relative to the temperature */
+}

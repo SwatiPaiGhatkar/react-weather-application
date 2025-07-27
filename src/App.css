@@ -1,2 +1,19 @@
-
-
+.App {
+  margin: 0 auto;
+  padding: 40px;
+}
+.App footer {
+  text-align: center;
+  margin-top: 20px;
+  font-family: Google Sans, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 10px;
+}
+.App footer a {
+  color: #6422f1;
+  text-decoration: none;
+}
+.App footer a:hover {
+  text-decoration: underline;
+}
