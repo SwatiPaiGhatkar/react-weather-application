@@ -1,56 +1,90 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import "./Weather.css";
 
 export default function Weather() {
-  return (
-    <div className="Weather">
-      <form>
-        <div className="row">
-          <div className="col-9">
-            <input
-              type="search"
-              placeholder="Enter a city.."
-              required
-              className="form-control"
-              autoFocus="on"
-            />
-          </div>
-          <div className="col-3">
-            <input
-              type="submit"
-              value="Search"
-              className="btn btn-primary w-100"
-            />
-          </div>
-        </div>
-      </form>
-      <h1>Melbourne</h1>
-      <ul>
-        <li>Sunday 10:00</li>
-        <li>Clear</li>
-      </ul>
+  const [weatherData, setWeatherData] = useState({ ready: false });
 
-      <div className="row mt-3">
-        <div className="col-6">
-          <div className="weather-main">
-            <img
-              src="https://ssl.gstatic.com/onebox/weather/64/cloudy.png"
-              alt="Cloudy weather icon"
-              className="float-left"
-            />
+  function handleResponse(response) {
+    console.log(response.data);
+    setWeatherData({
+      ready: true,
+      temperature: response.data.main.temp,
+      precipitation: response.data.clouds.all,
+      icon: response.data.weather[0].icon,
+      city: response.data.name,
+      date: new Date(response.data.dt * 1000).toLocaleString(),
+      description: response.data.weather[0].description,
+      humidity: response.data.main.humidity,
+      wind: response.data.wind.speed,
+      iconUrl: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
+    });
+  }
 
-            <span className="temperature">25</span>
-            <span className="unit">°C</span>
+  if (weatherData.ready) {
+    return (
+      <div className="Weather">
+        <form>
+          <div className="row">
+            <div className="col-9">
+              <input
+                type="search"
+                placeholder="Enter a city.."
+                required
+                className="form-control"
+                autoFocus="on"
+              />
+            </div>
+            <div className="col-3">
+              <input
+                type="submit"
+                value="Search"
+                className="btn btn-primary w-100"
+              />
+            </div>
           </div>
-        </div>
-        <div className="col-6">
-          <ul>
-            <li>Precipitation: 15%</li>
-            <li>Humidity: 50%</li>
-            <li>Wind: 10 km/h</li>
-          </ul>
+        </form>
+        <h1>{weatherData.city}</h1>
+        <ul>
+          <li>{weatherData.date}</li>
+          <li className="text-capitalize">{weatherData.description}</li>
+        </ul>
+
+        <div className="row mt-3">
+          <div className="col-6">
+            <div className="weather-main">
+              <img
+                src={weatherData.iconUrl}
+                alt={weatherData.description}
+                className="float-left"
+              />
+
+              <span className="temperature">
+                {Math.round(weatherData.temperature)}
+              </span>
+              <span className="unit">°C</span>
+            </div>
+          </div>
+          <div className="col-6">
+            <ul>
+              <li>Precipitation: {weatherData.precipitation}%</li>
+              <li>Humidity: {weatherData.humidity} %</li>
+              <li>Wind: {weatherData.wind} km/h</li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    const apiKey = "8e9db809de0a11b6df5e9e40be6b345a";
+    let city = "Mumbai";
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
+
+    return (
+      <div className="Weather">
+        <h1>Loading...</h1>
+      </div>
+    );
+  }
 }

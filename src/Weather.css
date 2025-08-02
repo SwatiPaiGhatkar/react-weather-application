@@ -43,23 +43,25 @@
   display: flex;
   align-items: center;
   gap: 10px; /* space between icon and temperature */
-  margin-right: 2px;
+  margin-right: 0px;
 }
 .temperature {
-  font-size: 40px;
+  font-size: 47px;
   font-weight: bold;
   color: #6422f1;
-  line-height: 64px;
+  line-height: 60px;
+  margin-right: 0px; /* Adjusts the space between temperature and unit */
 }
 .temperature,
 .unit {
   display: inline-block;
-  vertical-align: left;
+  vertical-align: middle;
 }
 
 .unit {
-  font-size: 16px;
+  font-size: 18px;
   color: #6422f1;
   position: relative;
   top: -5px; /* Adjusts the unit position relative to the temperature */
+  left: -7px; /* Adjusts the unit position relative to the temperature */
 }
