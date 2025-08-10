@@ -1,0 +1,25 @@
+.Forecast {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5px;
+  padding: 5px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  max-width: fit-content;
+}
+.Forecast-temperature-min {
+  opacity: 0.6;
+  margin-left: 5px;
+  font-weight: bold;
+}
+.ForecastDay-day {
+  font-size: 16px;
+  font-weight: bold;
+  color: #6422f1;
+  margin-bottom: 10px;
+}
+.ForecastDay-icon {
+  size: 12px;
+}
