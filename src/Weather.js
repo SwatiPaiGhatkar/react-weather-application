@@ -26,12 +26,42 @@ export default function Weather(props) {
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
       iconUrl: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
+      coordinates: {
+        lat: response.data.coord.lat,
+        lon: response.data.coord.lon,
+      },
     });
   }
   function searchCity(city) {
     const apiKey = "8e9db809de0a11b6df5e9e40be6b345a";
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
+  }
+
+  function searchByCoordinates(lat, lon) {
+    const apiKey = "8e9db809de0a11b6df5e9e40be6b345a";
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
+  }
+
+  function handleCurrentLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+          searchByCoordinates(lat, lon);
+        },
+        (error) => {
+          console.error("Error getting location:", error);
+          alert(
+            "Unable to get your current location. Please search for a city instead."
+          );
+        }
+      );
+    } else {
+      alert("Geolocation is not supported by this browser.");
+    }
   }
 
   function handleSubmit(event) {
@@ -47,7 +77,7 @@ export default function Weather(props) {
       <div className="Weather">
         <form onSubmit={handleSubmit}>
           <div className="row">
-            <div className="col-9">
+            <div className="col-7">
               <input
                 type="search"
                 placeholder="Enter a city.."
@@ -63,6 +93,16 @@ export default function Weather(props) {
                 value="Search"
                 className="btn btn-primary w-100"
               />
+            </div>
+            <div className="col-2">
+              <button
+                type="button"
+                onClick={handleCurrentLocation}
+                className="btn btn-success w-100"
+                title="Use current location"
+              >
+                📍
+              </button>
             </div>
           </div>
         </form>

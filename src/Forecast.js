@@ -8,13 +8,16 @@ export default function Forecast(props) {
   function handleForecastResponse(response) {
     console.log(response.data);
   }
-  console.log(props.data);
-  let latitude = props.coordinates.lat;
-  let longitude = props.coordinates.lon;
-  let apiKey = "8e9db809de0a11b6df5e9e40be6b345a";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
 
-  axios.get(apiUrl).then(handleForecastResponse);
+  // Only make API call if coordinates are available
+  if (props.data && props.data.coordinates) {
+    let latitude = props.data.coordinates.lat;
+    let longitude = props.data.coordinates.lon;
+    let apiKey = "8e9db809de0a11b6df5e9e40be6b345a";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+
+    axios.get(apiUrl).then(handleForecastResponse);
+  }
 
   return (
     <div className="Forecast">
