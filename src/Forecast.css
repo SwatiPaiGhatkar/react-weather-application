@@ -1,25 +1,46 @@
 .Forecast {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f8f9fa;
+}
+
+.ForecastDay {
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 5px;
-  padding: 5px;
-  background-color: #f0f0f0;
-  border-radius: 10px;
-  max-width: fit-content;
+  padding: 10px;
+  margin: 5px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-.Forecast-temperature-min {
-  opacity: 0.6;
-  margin-left: 5px;
-  font-weight: bold;
-}
+
 .ForecastDay-day {
-  font-size: 16px;
   font-weight: bold;
-  color: #6422f1;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+  color: #333;
+  font-size: 14px;
 }
+
 .ForecastDay-icon {
-  size: 12px;
+  margin: 8px 0;
+}
+
+.ForecastDay-icon img {
+  width: 42px;
+  height: 42px;
+}
+
+.Forecast-temperature {
+  margin-top: 8px;
+}
+
+.Forecast-temperature-max {
+  color: #333;
+  margin-right: 8px;
+}
+
+.Forecast-temperature-min {
+  color: #666;
+  font-size: 14px;
 }
