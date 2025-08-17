@@ -10,7 +10,7 @@
   text-align: center;
   padding: 10px;
   margin: 5px;
-  background-color: rgb(255, 255, 255);
+  background-color: white;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -43,4 +43,16 @@
 .Forecast-temperature-min {
   color: #666;
   font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .ForecastDay {
+    padding: 8px;
+    margin: 3px;
+  }
+
+  .ForecastDay-icon img {
+    width: 36px;
+    height: 36px;
+  }
 }
