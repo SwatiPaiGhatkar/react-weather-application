@@ -16,7 +16,8 @@ export default function Forecast(props) {
 
       axios.get(apiUrl).then(handleForecastResponse);
     }
-  }, [props.data.coordinates]);
+    // eslint-disable-next-line
+  }, [props.data.city]);
 
   function handleForecastResponse(response) {
     console.log(response.data);
